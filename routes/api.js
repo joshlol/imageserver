@@ -4,8 +4,8 @@ const fetch = require('node-fetch');
 const ClientOAuth2 = require('client-oauth2');
 
 const discordauth = new ClientOAuth2({
-  clientId: '',
-  clientSecret: '',
+  clientId: process.env.client_id,
+  clientSecret: process.env.client_secret,
   accessTokenUri: 'https://discord.com/api/oauth2/token',
   authorizationUri: 'https://discord.com/api/oauth2/authorize',
   redirectUri: 'http://localhost:3000/api/login/discord/callback',
@@ -14,7 +14,7 @@ const discordauth = new ClientOAuth2({
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'API, handling image upload & login' });
+  res.render('signin', { title: 'API, handling image upload & login', url: '/api/login/discord' });
 });
 
 router.get('/login/discord', function(req, res) {
