@@ -4,8 +4,8 @@ const fetch = require('node-fetch');
 const ClientOAuth2 = require('client-oauth2');
 
 const discordauth = new ClientOAuth2({
-  clientId: process.env.client_id,
-  clientSecret: process.env.client_secret,
+  clientId: process.env.CLIENTID,
+  clientSecret: process.env.CLIENTSECRET,
   accessTokenUri: 'https://discord.com/api/oauth2/token',
   authorizationUri: 'https://discord.com/api/oauth2/authorize',
   redirectUri: 'http://localhost:3000/api/login/discord/callback',
