@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const fetch = require('node-fetch');
 const ClientOAuth2 = require('client-oauth2');
 
 const discordauth = new ClientOAuth2({
@@ -13,34 +12,20 @@ const discordauth = new ClientOAuth2({
 });
 
 /* GET home page. */
-router.get('/auth', function(req, res) {
+router.get('/', function(req, res) {
   res.render('signin', { title: 'API, handling image upload & login', login_discord: '/api/login/discord' });
 });
 
-router.get('/auth/discord', function(req, res) {
+router.get('/discord', function(req, res) {
   res.redirect(discordauth.code.getUri());
 });
 
-router.get('/auth/discord/callback', async (req, res) => {
+router.get('/discord/callback', async (req, res) => {
   discordauth.code.getToken(req.originalUrl).then(function(user) {
     res.cookies.set('akey', user.data.access_token, {'expires': user.expires, signed: true});
     return res.redirect('/api/user');
   });
 });
 
-router.get('/user', async (req, res) => {
-  const key = req.cookies.get('akey');
-  if (key) {
-    fetch('https://discord.com/api/v6/users/@me', {
-      headers: { 'Authorization': `Bearer ${key}` },
-    })
-      .then(res => res.json())
-      .then(json => {
-        res.send(json);
-      });
-  } else {
-    res.send({error: 'callback cookie is missing! try reloging back in!'});
-  }
-});
 
 module.exports = router;

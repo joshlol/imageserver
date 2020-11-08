@@ -7,6 +7,7 @@ const cookies = require('cookies');
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const apiRouter = require('./routes/api.js');
+const authRouter = require('./routes/auth.js');
 
 const app = express();
 
@@ -23,5 +24,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api', apiRouter);
+app.use('/auth', authRouter);
 
 module.exports = app;
