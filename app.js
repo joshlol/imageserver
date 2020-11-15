@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-const csrf = require('csurf');
 const logger = require('morgan');
 const cookies = require('cookies');
 
@@ -21,12 +20,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cookies.express(['joshlol_88vnbwa9', 'joshlol_kmfdas78', 'joshlol_9873hjhk']));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(csrf({ cookie: true }));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api', apiRouter);
 app.use('/auth', authRouter);
+app.use('/', express.static('uploads'));
 
 app.use(function(err, req, res, next) {
   if (err.code !== 'EBADCSRFTOKEN') return next(err);

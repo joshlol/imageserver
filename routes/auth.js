@@ -13,7 +13,7 @@ const discordauth = new ClientOAuth2({
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('signin', { title: 'API, handling image upload & login', login: '/auth/discord' });
+  res.render('signin', { title: 'Auth Endpoint', login: '/auth/discord' });
 });
 
 router.get('/discord', function(req, res) {

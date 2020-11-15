@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+  </head>
+  <body>
+    <h1>placeholder</h1>
+    <p>Welcome to placeholder</p>
+    <br>
+
+    <form method="post" action="upload/post" enctype="multipart/form-data">
+      <input type="file" name="photo" />
+    </form>
+    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <script>
+      FilePond.registerPlugin(FilePondPluginImagePreview);
+        const pond = FilePond.create( document.querySelector('input[type="file"]'),  {
+          maxFiles: 1
+        });
+
+        FilePond.setOptions({
+            server: 'api/upload'
+         });
+    </script>
+  </body>
+</html>
