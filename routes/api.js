@@ -1,23 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const fetch = require('node-fetch');
 const upload = require('../handlers/upload.js');
 const rename = require('../handlers/rename.js');
 const path = require('path');
 
 router.get('/user', async (req, res) => {
-  const key = req.cookies.get('akey', { signed: true });
-  if (key) {
-    await fetch('https://discord.com/api/v6/users/@me', {
-      headers: { 'Authorization': `Bearer ${key}` },
-    })
-      .then(res => res.json())
-      .then(json => {
-        res.send(json);
-      });
+  if (req.session.user) {
+    res.send(req.session.user);
   } else {
-    res.send({error: 'callback cookie is missing! try reloging back in!'});
+    res.send({error: 'userdata object was missing!'});
   }
+
 });
 
 router.post('/upload', upload.single('photo'), async (req, res) => {

@@ -1,8 +1,7 @@
 const express = require('express');
 const path = require('path');
-const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const cookies = require('cookies');
+const session = require('express-session');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -17,8 +16,14 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(cookies.express(['joshlol_88vnbwa9', 'joshlol_kmfdas78', 'joshlol_9873hjhk']));
+
+app.use(session({
+  secret: 'joshlol_fij8e7',
+  resave: true,
+  saveUninitialized: true,
+  name: 'sessionID'
+}));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
