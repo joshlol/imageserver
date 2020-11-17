@@ -5,8 +5,7 @@
  */
 
 require('dotenv').config();
-const app = require('../app');
-const debug = require('debug')('imageserver1:server');
+const app = require('./app');
 const http = require('http');
 /**
  * Get port from environment and store in Express.
@@ -86,5 +85,5 @@ function onListening() {
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  console.log('Listening on ' + bind);
 }
