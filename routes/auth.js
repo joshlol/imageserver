@@ -14,7 +14,7 @@ const discordauth = new ClientOAuth2({
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('signin', { title: 'Auth Endpoint', login: '/auth/discord' });
+  res.render('login', { title: 'Auth Endpoint', login: '/auth/discord' });
 });
 
 router.get('/discord', function(req, res) {
@@ -38,17 +38,18 @@ router.get('/discord/callback', async (req, res) => {
           req.session.user = {
             id: json.id,
             username: json.username,
+            discriminator: json.discriminator,
             avatar_hash: json.avatar,
             locale: json.locale
           };
         });
-      return res.redirect('/api/user');
+      return res.redirect('/');
     } else if (req.session.dkey && req.session.user) {
-      return res.redirect('/api/user');
+      return res.redirect('/');
     } else {
       return res.send({error: 'access token was not set!'});
     }
-  } else return res.redirect('/api/user');
+  } else return res.redirect('/');
 });
 
 module.exports = router;

@@ -4,14 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Blank Page - Brand</title>
+    <title>Page Not Found - Brand</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css?h=e58ff2401dbee709206a429a4d7e9488">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css?h=b077f3d66f4dd45a76529f02462151f3">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css?h=b077f3d66f4dd45a76529f02462151f3">
     <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css?h=b077f3d66f4dd45a76529f02462151f3">
-    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
-    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -126,7 +124,7 @@
                             </li>
                             <div class="d-none d-sm-block topbar-divider"></div>
                             <li class="nav-item dropdown no-arrow">
-                                <div class="nav-item dropdown show no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small"><%= user.username %>#<%= user.discriminator %></span><img class="border rounded-circle img-profile" src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar_hash %>"></a>
+                                <div class="nav-item dropdown show no-arrow"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="true" href="#"><span class="d-none d-lg-inline mr-2 text-gray-600 small">&lt;%= user.username %&gt;#&lt;%= user.discriminator %&gt;</span><img class="border rounded-circle img-profile" src="https://cdn.discordapp.com/avatars/<%= user.id %>/<%= user.avatar_hash %>"></a>
                                     <div
                                         class="dropdown-menu show shadow dropdown-menu-right animated--grow-in"><a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Settings</a>
                                         <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>&nbsp;Logout</a></div>
@@ -136,36 +134,24 @@
             </div>
             </nav>
             <div class="container-fluid">
-                <h3 class="text-dark mb-1" style="height: 50px;">Upload Files</h3>
+                <div class="text-center mt-5">
+                    <div class="error mx-auto" data-text="404">
+                        <p class="m-0">404</p>
+                    </div>
+                    <p class="text-dark mb-5 lead">Page Not Found</p>
+                    <p class="text-black-50 mb-0">looks like u got lost</p><a href="/">← Back to Dashboard</a></div>
             </div>
-            <div></div><div class="container">
-                <form method="post" action="upload/post" enctype="multipart/form-data">
-                    <input type="file" name="photo" />
-                  </form>
-</div>
-        <div></div><div class="container"></div></div>
-    <footer class="bg-white sticky-footer">
-        <div class="container my-auto">
-            <div class="text-center my-auto copyright"><span>Copyright © joshlol.xyz 2020<br><br>↑_(ΦωΦ;)Ψ<br></span></div>
         </div>
-    </footer>
+        <footer class="bg-white sticky-footer">
+            <div class="container my-auto">
+                <div class="text-center my-auto copyright"><span>Copyright © joshlol.xyz 2020<br><br>↑_(ΦωΦ;)Ψ<br></span></div>
+            </div>
+        </footer>
     </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a></div>
     <script src="assets/js/jquery.min.js?h=89312d34339dcd686309fe284b3f226f"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js?h=0168f7c1e0d08faa2f4b13f4a1dc8c98"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
     <script src="assets/js/script.min.js?h=823eb1733a0a81fa385a52d2e8e60900"></script>
-    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
-    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
-    <script>
-      FilePond.registerPlugin(FilePondPluginImagePreview);
-        const pond = FilePond.create( document.querySelector('input[type="file"]'),  {
-          maxFiles: 1
-        });
-
-        FilePond.setOptions({
-            server: 'api/upload'
-         });
-    </script>
 </body>
 
 </html>

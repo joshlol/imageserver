@@ -8,6 +8,7 @@
   "dependencies": {
     "btoa": "^1.2.1",
     "client-oauth2": "^4.3.3",
+    "connect-mongo": "^3.2.0",
     "cookie-parser": "~1.4.4",
     "cookies": "^0.8.0",
     "csurf": "^1.11.0",
