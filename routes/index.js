@@ -6,10 +6,8 @@ router.get('/', async function(req, res) {
   const user = await req.session.user;
   if (user) {
     return res.render('index', { user: user });
-  } else if (!user) {
-    return res.redirect('/auth/');
   } else {
-    return res.send({error: 'could not get user object from session'});
+    return res.redirect('/auth/');
   }
 });
 
@@ -17,10 +15,8 @@ router.get('/upload', async function(req, res) {
   const user = await req.session.user;
   if (user) {
     return res.render('upload', { user: user });
-  } else if (!user) {
-    return res.redirect('/auth/');
   } else {
-    return res.send({error: 'could not get user object from session'});
+    return res.redirect('/auth/');
   }
 });
 
