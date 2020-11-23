@@ -5,22 +5,22 @@ const router = express.Router();
 router.get('/', async function(req, res) {
   const user = await req.session.user;
   if (user) {
-    res.render('index', { user: user });
+    return res.render('index', { user: user });
   } else if (!user) {
-    res.redirect('/auth/');
+    return res.redirect('/auth/');
   } else {
-    res.send({error: 'could not get user object from session'});
+    return res.send({error: 'could not get user object from session'});
   }
 });
 
 router.get('/upload', async function(req, res) {
   const user = await req.session.user;
   if (user) {
-    res.render('upload', { user: user });
+    return res.render('upload', { user: user });
   } else if (!user) {
-    res.redirect('/auth/');
+    return res.redirect('/auth/');
   } else {
-    res.send({error: 'could not get user object from session'});
+    return res.send({error: 'could not get user object from session'});
   }
 });
 
