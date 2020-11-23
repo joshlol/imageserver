@@ -21,8 +21,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(session({
   secret: process.env.secret,
   resave: true,
-  saveUninitialized: true,
-  store: new MongoStore({ url: 'mongodb://192.168.0.172/imageserver' }),
+  saveUninitialized: false,
+  store: new MongoStore({ url: 'mongodb://localhost/imageserver' }),
   name: 'session'
 }));
 
