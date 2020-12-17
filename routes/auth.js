@@ -12,11 +12,20 @@ const discordauth = new ClientOAuth2({
   scopes: ['identify']
 });
 
-/* GET home page. */
 router.get('/', function(req, res) {
   res.render('login', { title: 'Auth Endpoint', login: '/auth/discord' });
 });
 
+router.get('/logout', function(req, res, next) {
+  if (req.session) { // checks to see if session object is available 
+    req.session.destroy(function(err) {
+      if (err) next(err);
+      return res.redirect('/');
+    });
+  } else return res.redirect('/');
+});
+
+// platform logins
 router.get('/discord', function(req, res) {
   if (!req.session.dkey) {
     res.redirect(discordauth.code.getUri());

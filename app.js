@@ -22,7 +22,7 @@ app.use(session({
   secret: process.env.secret,
   resave: true,
   saveUninitialized: false,
-  store: new MongoStore({ url: 'mongodb://localhost/imageserver' }),
+  store: new MongoStore({ url: process.env.mongourl }),
   name: 'session'
 }));
 
@@ -35,8 +35,8 @@ app.use('/auth', authRouter);
 app.use('/auth', express.static(path.join(__dirname, 'public')));
 app.use('/', express.static('uploads'));
 
-app.use(function(err, req, res, next) {
-  if (err.code !== 'EBADCSRFTOKEN' || err.code !== 'MongoServerSelectionError') return next(err);
+app.use(function(err, req, res) {
+  // if (err.code !== 'EBADCSRFTOKEN' || err.code !== 'MongoServerSelectionError') return next(err);
    
   if (err.code == 'EBADCSRFTOKEN') {
     res.status(403);
